@@ -8,36 +8,12 @@ const jwt = require("jsonwebtoken");
 const checkAuth = require("./check-auth");
 const { getDate } = require("./user");
 
-// router.get("/:userId", (req, res) => {
-//   const today = new Date().toLocaleDateString("en-US");
-//   console.log(today);
-//   Expenses.find({
-//     userId: req.params.userId,
-//     date: today,
-//   })
-//     // .sort({ date: +1 })
-//     .select("categoryId category date moneyAmount")
-//     .then((answer) => {
-//       if (answer === null) {
-//         return res.status(404).json({ message: "not exist" });
-//       } else {
-//         console.log(answer);
-//         // const cat = Category.findById(answer.categoryId);
-//         // console.log(cat.id);
-//         return res.status(200).json({ answer });
-//       }
-//     })
-//     .catch((err) => {
-//       console.error("error: ", err);
-//     });
-// });
-
-router.get("/:userId&:date", (req, res) => {
-  const today = new Date().toLocaleDateString("en-US");
-  console.log(today);
+router.get("/:userId", (req, res) => {
+  // const today = new Date().toLocaleDateString("en-US");
+  // console.log(today);
   Expenses.find({
     userId: req.params.userId,
-    date: req.params.date,
+    date: req.query.date,
   })
     // .sort({ date: +1 })
     .select("categoryId category date moneyAmount")
@@ -55,6 +31,30 @@ router.get("/:userId&:date", (req, res) => {
       console.error("error: ", err);
     });
 });
+
+// router.get("/:userId&:date", (req, res) => {
+//   const today = new Date().toLocaleDateString("en-US");
+//   console.log(today);
+//   Expenses.find({
+//     userId: req.params.userId,
+//     date: req.params.date,
+//   })
+//     // .sort({ date: +1 })
+//     .select("categoryId category date moneyAmount")
+//     .then((answer) => {
+//       if (answer === null) {
+//         return res.status(404).json({ message: "not exist" });
+//       } else {
+//         console.log(answer);
+//         // const cat = Category.findById(answer.categoryId);
+//         // console.log(cat.id);
+//         return res.status(200).json({ answer });
+//       }
+//     })
+//     .catch((err) => {
+//       console.error("error: ", err);
+//     });
+// });
 
 // router.get("/:userId", (req, res) => {
 //   Expenses.find({ userId: req.params.userId })
