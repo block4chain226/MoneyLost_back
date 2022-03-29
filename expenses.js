@@ -34,7 +34,7 @@ const { getDate } = require("./user");
 
 router.get("/:userId&:date", (req, res) => {
   const today = new Date().toLocaleDateString("en-US");
-  console.log(today);
+  //console.log(today);
   Expenses.find({
     userId: req.params.userId,
     date: req.params.date,
